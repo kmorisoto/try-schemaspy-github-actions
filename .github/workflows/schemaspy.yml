@@ -14,7 +14,7 @@ jobs:
         run: docker-compose up -d
 
       - name: run schemaspy
-        run: docker run -u root -v "$PWD/output:/output" --net="host" schemaspy/schemaspy:latest -t pgsql -host localhost:5432 -db dvdrental -u postgres -p password
+        run: docker run -u root -v "$PWD/output:/output" schemaspy/schemaspy:latest -t pgsql -host localhost:5432 -db dvdrental -u postgres -p password
 
       - run: ls output
 
