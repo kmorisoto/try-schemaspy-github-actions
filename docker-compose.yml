@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   db:
-    image: library/postgres:15-alpine
+    image: library/postgres:14-alpine
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
-      POSTGRES_HOST_AUTH_METHOD: trust
+#      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ./dvdrental:/docker-entrypoint-initdb.d
 
