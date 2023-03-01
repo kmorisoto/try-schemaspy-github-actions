@@ -18,7 +18,7 @@ jobs:
         run: |
           docker run -v "$PWD/output:/output" schemaspy/schemaspy:latest \
           -t pgsql \
-          -host host.docker.internal:5432 \
+          -host $(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1):5432 \
           -db dvdrental \
           -u postgres \
           -p password \
