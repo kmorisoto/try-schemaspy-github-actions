@@ -18,8 +18,7 @@ jobs:
         run: |
           docker run -v "$PWD/output:/output" schemaspy/schemaspy:latest \
           -t pgsql \
-          -host host.docker.internal \
-          -port 5432 \
+          -host host.docker.internal:5432 \
           -db dvdrental \
           -u postgres \
           -p password \
