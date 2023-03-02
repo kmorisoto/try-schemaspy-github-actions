@@ -9,6 +9,6 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
 #      POSTGRES_HOST_AUTH_METHOD: trust
-#    volumes:
-#      - ./dvdrental:/docker-entrypoint-initdb.d
+    volumes:
+      - ./dvdrental:/docker-entrypoint-initdb.d
 
