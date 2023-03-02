@@ -18,7 +18,17 @@ jobs:
         run: docker run -u root -v "$PWD/output:/output" --net="host" schemaspy/schemaspy:snapshot -t pgsql -host $(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1):5432 -db dvdrental -u postgres -p password
 
 
-      - run: ls output
+      - name: create PR
+        run: |
+          BRANCH=docs/db/$(date +%Y%m%d%H%M%S)
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git switch -c $BRANCH
+          git commit -a -m "Update database docs"
+          git push --set-upstream origin $BRANCH
+          gh pr create --title "Update Database docs" --body ":smiley:"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: stop database
         run: docker-compose down
