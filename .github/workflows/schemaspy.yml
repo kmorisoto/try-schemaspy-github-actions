@@ -24,7 +24,8 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git switch -c $BRANCH
-          git commit -a -m "Update database docs"
+          git add output
+          git commit -m "Update database docs"
           git push --set-upstream origin $BRANCH
           gh pr create --title "Update Database docs" --body ":smiley:"
         env:
