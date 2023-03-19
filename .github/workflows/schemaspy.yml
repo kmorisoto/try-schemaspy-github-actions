@@ -28,10 +28,15 @@ jobs:
           git commit -m "Update database docs"
           git push --set-upstream origin $BRANCH
           gh pr create --title "Update Database docs" --body ":smiley:"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: merge PR
+        run: |
           gh pr review --approve
           gh pr merge --squash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.TOKEN }}
 
       - name: stop database
         run: docker-compose down
